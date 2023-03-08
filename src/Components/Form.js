@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 
 export default function Form () {
-const { userInfo, setUserInfo } = useState({ name: '', email: '', password: '', tos: '' })
+const [ userInfo, setUserInfo ] = useState({ name: '', email: '', password: '', tos: '' })
+
+const onChange = (evt) => {
+    const { name, value, checked, type } = evt.target
+    const updatedInfo = type === 'checkbox' ? checked : value
+
+    setUserInfo({ ...userInfo, [name]: updatedInfo })
+}
 
 return (
     <div>
@@ -9,19 +16,19 @@ return (
         <form>
             <label>
                 Name:
-                <input type='text' name='name' value='' placeholder='Full Name' />
+                <input name='name' onChange={onChange} type='text'  value={userInfo.name} placeholder='Full Name' />
             </label>
             <label>
                 Email:
-                <input type='email' name='email' value='' placeholder='example@gmail.com' />
+                <input name='email' onChange={onChange} type='email'  value={userInfo.email} placeholder='example@gmail.com' />
             </label>
             <label>
                 Password:
-                <input type='text' name='password' value='' placeholder='Password' />
+                <input name='password' onChange={onChange} type='text'  value={userInfo.password} placeholder='Password' />
             </label>
             <label>
                 Terms of Service:
-                <input type='checkbox' name='tos' checked='' />
+                <input name='tos' onChange={onChange} type='checkbox'  checked={userInfo.tos} />
             </label>
             <button>Submit</button>
         </form>
