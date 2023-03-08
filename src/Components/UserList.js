@@ -9,7 +9,7 @@ export default function UserList (props) {
             {props.userList.map(( value, index ) => {
                 return (
                     <div key={index}>
-                        {value.name}, {value.email}, {value.password}, {value.tos}
+                        {value.name}, {value.email}, {value.password}
                     </div>
                 )
             })}
