@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import UserList from './UserList'
 import * as Yup from 'yup'
+import axios from 'axios'
 
 export default function Form (props) {
 // State Block
@@ -51,8 +52,12 @@ const onChange = (evt) => {
 // Submit Handler
 const onSubmit = (evt) => {
     evt.preventDefault()
-    setUserList([...userList, userInfo])
-    setUserInfo({ name: '', email: '', password: '', tos: '' })
+    axios.post('https://reqres.in/api/users', userInfo)
+    .then( (res) => {
+        setUserList([...userList, res.data])
+    })
+    .catch( err => console.error(err))
+    .finally(() => setUserInfo({ name: '', email: '', password: '', tos: '' }))
 }
 
 // JSX
