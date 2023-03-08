@@ -38,7 +38,7 @@ return (
                 Terms of Service:
                 <input name='tos' onChange={onChange} type='checkbox'  checked={userInfo.tos} />
             </label>
-            <button disabled>Submit</button>
+            <button disabled={false}>Submit</button>
         </form>
         <UserList userList={userList} />
     </div>
